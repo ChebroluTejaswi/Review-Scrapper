@@ -12,9 +12,6 @@ body {
     text-align: center;
     text-transform: uppercase;
   }
-  .content{
-    background-color: black;
-  }
   img {
     border-radius: 50%;
     height: 60px;

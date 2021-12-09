@@ -12,10 +12,10 @@
 
 <body>
 
-  <div class="table-users">
+  <div class="table-users" style="margin-bottom: 100px;">
     <div class="header">Reviews</div>
 
-    <table cellspacing="0">
+    <table cellspacing="0" >
       <tr>
         <th>Product</th>
         <th>Name</th>
@@ -25,7 +25,7 @@
       </tr>
       {% for review in reviews %}
       <tr>
-        <td>{{review['Product']}}</td>
+        <td><a href= {{review["ProductURL"]}} target="_blank">{{review['Product']}}</a></td>
         <td>{{review['Name']}}</td>
         <td>{{review['Rating']}}</td>
         <td>{{review['CommentHead']}}</td>

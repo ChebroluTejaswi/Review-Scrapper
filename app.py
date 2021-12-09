@@ -19,11 +19,9 @@ def homepage():
 @app.route('/scrap',methods=['POST']) # route with allowed methods as POST and GET
 def index():
     if request.method == 'POST':
-        print("post recieved")
         searchString = request.form['content'].replace(" ","") # obtaining the entered search string
         try:
             flipkart_url = "https://www.flipkart.com/search?q=" + searchString # preparing the URL to search the product on flipkart
-            print(flipkart_url)
             # Code to open the url(website)
             uClient = uReq(flipkart_url) # requesting the webpage from the internet (returns a HTTP respose)
             flipkartPage = uClient.read() # reading the webpage (page source of the website)
@@ -45,25 +43,26 @@ def index():
             for commentbox in commentboxes:
                 try:
                     name=commentbox.find_all('p',{'class':'_2sc7ZR _2V5EHH'})[0].text
-                    print(name)
                 except:
                     name = 'No Name'
+                    
                 try:
                     rating = commentbox.div.div.div.div.text
-
                 except:
                     rating = 'No Rating'
+                    
                 try:
                     commentHead = commentbox.div.div.div.p.text
                 except:
                     commentHead = 'No Comment Heading'
+                    
                 try:
                     comtag = commentbox.div.div.find_all('div', {'class': ''})
                     custComment = comtag[0].div.text
                 except:
                     custComment = 'No Customer Comment'
                     
-                mydict = {"Product": searchString, "Name": name, "Rating": rating, "CommentHead": commentHead,
+                mydict = {"Product":searchString,"ProductURL":productLink, "Name": name, "Rating": rating, "CommentHead": commentHead,
                           "Comment": custComment} # saving that detail to a dictionary
                 reviews.append(mydict) #  appending the comments to the review list
                 
