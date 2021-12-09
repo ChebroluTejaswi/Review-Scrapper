@@ -7,12 +7,13 @@
 
 {% block body %}
 <div class="content">
-    <h1 style="text-align: center">Search</h1>
-    <div class="form">
+    <h1 style="text-align: center; color: rgb(1, 1, 80);">Review Scrapper</h1>
+    <div class="form" >
         <form action="/scrap" method="POST">
-            <input type="text" name="content" id="content">
+            <input type="text" name="content" id="content" placeholder="Enter product name" autofocus>
             <input type="submit" value="Search">
         </form>
     </div>
+    <p><small>Click on search button to see reviews of the entered product from Flipkart website.</small></p>
 </div>
 {% endblock %}

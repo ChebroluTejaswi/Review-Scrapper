@@ -26,42 +26,33 @@ def index():
             print(flipkart_url)
             # Code to open the url(website)
             uClient = uReq(flipkart_url) # requesting the webpage from the internet (returns a HTTP respose)
-            
             flipkartPage = uClient.read() # reading the webpage (page source of the website)
             uClient.close() # closing the connection to the web server
             
             flipkart_html = bs(flipkartPage, "html.parser") # parsing the webpage as HTML
-            # seacrhing for appropriate tag to redirect to the product link
+            # searching for appropriate tag to redirect to the product link
             bigboxes = flipkart_html.findAll("div", {"class": "_1AtVbE col-12-12"})
             del bigboxes[0:3] # the first 3 members of the list do not contain relevant information, hence deleting them.
-            box = bigboxes[0] #  taking the first iteration (for demo)
-            print(box)
+            box = bigboxes[0] # taking the first iteration/product
             productLink = "https://www.flipkart.com" + box.div.div.a['href'] # extracting the actual product link
-            print(productLink)
+            
             prodRes = requests.get(productLink) # getting the product page from server
             prod_html = bs(prodRes.text, "html.parser") # parsing the product page as HTML
             commentboxes = prod_html.find_all('div', {'class': "_16PBlm"}) # finding the HTML section containing the customer comments
-            # table = db[searchString] # creating a collection with the same name as search string. Tables and Collections are analogous.
-            #filename = searchString+".csv" #  filename to save the details
-            #fw = open(filename, "w") # creating a local file to save the details
-            #headers = "Product, Customer Name, Rating, Heading, Comment \n" # providing the heading of the columns
-            #fw.write(headers) # writing first the headers to file
+           
             reviews = [] # initializing an empty list for reviews
             #  iterating over the comment section to get the details of customer and their comments
             for commentbox in commentboxes:
                 try:
-                    # name = commentbox.div.div.find_all('p', {'class': '_3LYOAd _3sxSiS'})[0].text
                     name=commentbox.find_all('p',{'class':'_2sc7ZR _2V5EHH'})[0].text
                     print(name)
                 except:
                     name = 'No Name'
-
                 try:
                     rating = commentbox.div.div.div.div.text
 
                 except:
                     rating = 'No Rating'
-
                 try:
                     commentHead = commentbox.div.div.div.p.text
                 except:
@@ -71,14 +62,16 @@ def index():
                     custComment = comtag[0].div.text
                 except:
                     custComment = 'No Customer Comment'
-                #fw.write(searchString+","+name.replace(",", ":")+","+rating + "," + commentHead.replace(",", ":") + "," + custComment.replace(",", ":") + "\n")
+                    
                 mydict = {"Product": searchString, "Name": name, "Rating": rating, "CommentHead": commentHead,
                           "Comment": custComment} # saving that detail to a dictionary
-                # x = table.insert_one(mydict) #insertig the dictionary containing the rview comments to the collection
                 reviews.append(mydict) #  appending the comments to the review list
+                
             return render_template('results.html', reviews=reviews) # showing the review to the user
+        
         except:
             return 'OOPS! Something is wrong.'
+
 
 
 if __name__ == "__main__":

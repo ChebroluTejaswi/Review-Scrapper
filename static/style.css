@@ -4,16 +4,17 @@ body {
   body * {
     box-sizing: border-box;
   }
-  
   .header {
-    background-color: #327a81;
+    background-color: #225f64;
     color: white;
     font-size: 1.5em;
     padding: 1rem;
     text-align: center;
     text-transform: uppercase;
   }
-  
+  .content{
+    background-color: black;
+  }
   img {
     border-radius: 50%;
     height: 60px;

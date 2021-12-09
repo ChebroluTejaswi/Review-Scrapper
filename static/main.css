@@ -5,7 +5,7 @@ body, html {
 
 .content {
     margin: 0 auto;
-    width: 400px;
+    width: 80%;
 }
 
 table, td, th {
@@ -28,8 +28,5 @@ td {
 
 .form {
     margin-top: 20px;
-}
-
-#content {
-    width: 70%;
+    margin-bottom: 100px;
 }
