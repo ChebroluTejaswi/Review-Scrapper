@@ -1,4 +1,4 @@
-### Flipkart Review Scrapper
+## Flipkart Review Scrapper
 
     Web scraping is a technique using which the webpages from the internet are fetched and parsed 
     to understand and extract specific information similar to a human being. Web scrapping 
@@ -12,7 +12,7 @@
     Hence, web scrappers are applications/bots, which automatically send requests to websites and 
     then extract the desired information from the website output.
 
-How it works?
+### How it works?
 
     1. Form in Index.html takes an input(search key) and posts the value to path '/scrap'.
     2. Python file app.py executes index function on a post request 
@@ -22,7 +22,7 @@ How it works?
     3. Results are sent to results.html file.
     4. Results.html displays the output in a table format.
     
-Installation
+### Installation
 > Create a virtual Environment
 
 ```shell
@@ -49,3 +49,10 @@ python app.py
 ```shell
 host:127.0.0.1 port:8000 (http://127.0.0.1:8000/)
 ```
+
+### Interface
+![image](https://user-images.githubusercontent.com/68593617/175037837-5f070a2c-53cb-4f6b-8894-5e0a19315d2e.png)
+
+### Reviews page
+![image](https://user-images.githubusercontent.com/68593617/175038021-dd52c2d1-ebf7-4bee-a70f-8bb1dadf0eb2.png)
+
